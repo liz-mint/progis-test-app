@@ -4,6 +4,7 @@ import { CircleMarker, MapContainer, Popup, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { getPointData } from '../api.js';
 import ClickHandler from './ClickHandler.jsx';
+import PointInfo from './PointInfo.jsx';
 import ZWSLayer from './ZWSLayer.jsx';
 
 const Map = ({
@@ -62,7 +63,7 @@ const Map = ({
             radius={10}
           >
             <Popup>
-              {pointData?.data || 'some data'}
+              <PointInfo data={pointData} />
             </Popup>
           </CircleMarker>
         )}
