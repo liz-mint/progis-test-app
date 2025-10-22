@@ -1,0 +1,2 @@
+
+export const ZULUGIS_ZWS_URL = 'http://zs.zulugis.ru:6473/zws';
