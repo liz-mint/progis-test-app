@@ -31,7 +31,5 @@ export const getPointData = async (coords, layer, zoom) => {
         name: field.UserName?._text,
         value: field.Value?._text
       }));
-    }).catch(err=>{
-      console.log(err)
-    });
+    })
 }

@@ -14,6 +14,7 @@ const Map = ({
 }) => {
   const [selectedPoint, setSelectedPoint] = useState(null);
   const [pointData, setPointData] = useState(null);
+  const [pointError, setPointError] = useState(false);
   const mapRef = useRef(null);
   const markerRef = useRef(null);
 
@@ -30,7 +31,13 @@ const Map = ({
       getPointData(selectedPoint, layer, zoom)
         .then(data => {
           setPointData(data);
-          if (data && markerRef.current) {
+          setPointError(false);
+        }).catch(error => {
+          console.log(error.message)
+
+          setPointError(true);
+        }).finally(() => {
+          if (markerRef.current) {
             markerRef.current?.openPopup();
           }
         });
@@ -63,7 +70,7 @@ const Map = ({
             radius={10}
           >
             <Popup>
-              <PointInfo data={pointData} />
+              <PointInfo data={pointData} error={pointError} />
             </Popup>
           </CircleMarker>
         )}
